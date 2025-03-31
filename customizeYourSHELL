@@ -1,0 +1,84 @@
+The $PS1 variable in Linux, which defines the command prompt format, is typically set in your ~/.bashrc file, which is sourced for interactive bash shell sessions. 
+
+What is PS1?
+
+    $PS1 stands for "Prompt String 1" and controls the appearance of your terminal prompt. 
+
+Where to find it:
+    You'll find the $PS1 variable definition within your ~/.bashrc file, located in your home directory.
+
+How to modify it:
+    Open the ~/.bashrc file with a text editor (e.g., nano ~/.bashrc or vi ~/.bashrc) and find the line defining $PS1. You can then customize it by adding or modifying escape sequences to display the desired information (username, hostname, directory, etc.). 
+
+Example:
+    A common $PS1 setting might look like this: PS1="\[\033[00;32m\]\u@\h:\w\$\[\033[00m\] ", which displays the username, hostname, current directory, and a dollar sign ($). 
+To apply changes:
+    After modifying the ~/.bashrc file, you need to either restart your terminal or source the file using the command source ~/.bashrc to load the changes. 
+
+
+
+
+****SPECIAL CHARACTERS FOR CUSTOMIZATION WITH THEIR OUTPUT****
+----------------------------------------------------------------------------------------------------------------
+
+\d	Date (Mon Feb 6)
+\D{%Y-%m-%d}	Date (YYYY-MM-DD)
+\H	Full hostname
+\j	Number of jobs managed by the shell
+\n	Newline
+\r	Carriage return
+\s	Name of the shell
+\t	Current time 24-hour (HH:MM:SS)
+\T	Current time 12-hour (HH:MM:SS)
+\@	Current time
+\u	Current username
+\w	Full path of the current working directory
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+****CHANGING COLORS****
+
+1. Changing the Shell Prompt Color:
+    Find your shell configuration file: This is usually .bashrc or .bash_profile for bash. 
+    Open the file in a text editor: For example, nano .bashrc. 
+    Find the PS1 variable: It typically looks like `PS1="\u:\w\$ " `
+    Customize the PS1 variable: Use ANSI escape codes to set the color of the prompt text and background. 
+        \e[0m resets the color to default. 
+        \e[0;31m sets text color to red. 
+        \e[0;32m sets text color to green. 
+        \e[0;34m sets text color to blue. 
+        \e[0;35m sets text color to magenta. 
+        \e[0;36m sets text color to cyan. 
+        \e[41m sets background color to red. 
+        \e[42m sets background color to green. 
+        \e[44m sets background color to blue. 
+        \e[45m sets background color to magenta. 
+        \e[46m sets background color to cyan. 
+    Example: PS1="\e[0;32m\u:\w\$ \e[0m" sets the prompt text to green and resets to default after the prompt. 
+    Save and close the file: Then, source the configuration file with source .bashrc or source .bash_profile to apply the changes. 
+2. Changing File Listing Colors:
+    Modify the LS_COLORS environment variable: This variable controls the colors used by the ls command.
+Example: export LS_COLORS='di=01;31:fi=01;32:cx=01;36:bx=01;36:si=00;33:ln=01;36:mh=01;35:dr=01;35:cd=01;35:or=01;35:bd=0135:pd=0135:'.
+    Explanation:
+        di - Directory.
+        fi - Regular file.
+        cx - Symbolic link.
+        bx - Block special file.
+        si - Socket.
+        ln - Hard link.
+        mh - Multi-link.
+        dr - Directory, read-only.
+        cd - Directory, writable.
+        or - Directory, read-only, owner.
+        bd - Directory, writable, owner.
+        pd - Directory, writable, owner.
+    Add the export LS_COLORS line to your shell configuration file: Similar to changing the prompt color. 
+3. Colorizing Terminal Output with ANSI Escape Codes:
+    Use ANSI escape codes directly in commands:
+    For example, echo -e "\e[0;31mThis text is red\e[0m" will print "This text is red" in red. 
+    Use shell variables to store color codes:
+    This can make your scripts more readable. 
+        red='\e[0;31m'
+        green='\e[0;32m' 
+        reset='\e[0m'
